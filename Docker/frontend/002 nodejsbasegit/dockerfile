@@ -1,10 +1,8 @@
-FROM nodejsbase:v1
+FROM nodejsbase:v2
 #configuring GIT client and adding the ssh key
 ARG SSH_KEY_PASSPHRASE
 COPY id_rsa /root/.ssh/id_rsa
-# mkdir -p ~/.ssh && \
-#	apt-get install -y openssh-server && \
 RUN	chmod 600 /root/.ssh/id_rsa && \
 	ssh-keyscan gitlab.avangate.local > ~/.ssh/known_hosts
 #ENTRYPOINT /bin/bash
-#docker build -t nodejsbasegit:v1 .
+#docker build -t nodejsbasegit:v2 .

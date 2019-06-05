@@ -12,6 +12,9 @@ RUN apt-get update && \
 	npm i -g npm@6 && \
 	node --version && \
 	npm --version && \
+	npm config set proxy http://proxy.corp.2co.com:8080 && \
+	npm config set https-proxy http://proxy.corp.2co.com:8080 && \
+	npm config set registry http://registry.npmjs.org && \
 	mkdir -p ~/.ssh	
 #ENTRYPOINT /bin/bash
-#docker build -t nodejsbase:v1 .
+#docker build -t nodejsbase:v2 .

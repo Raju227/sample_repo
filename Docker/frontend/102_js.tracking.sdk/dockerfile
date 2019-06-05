@@ -1,0 +1,11 @@
+FROM nodejsbasegit:v2
+#running npm test for tracking
+RUN git clone git@gitlab.avangate.local:dev/js.tracking.sdk.git && \
+	cd js.tracking.sdk && \
+	ls -ltr && \
+	npm i && \
+	npm run test-ci
+#WORKDIR /js.tracking.sdk
+#CMD ["npm", "test", "*" ]
+#ENTRYPOINT /bin/bash
+#docker build -t nodejstracking:v2 .

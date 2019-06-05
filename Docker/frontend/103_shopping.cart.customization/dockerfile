@@ -1,0 +1,11 @@
+FROM nodejsbasegit:v2
+#running npm test for tracking
+RUN git clone git@gitlab.avangate.local:dev/shopping.cart.customization.git && \
+	cd shopping.cart.customization && \
+	ls -ltr && \
+	npm i && \
+	npm run test-ci
+#WORKDIR /shopping.cart.customization
+#CMD ["npm", "test", "*" ]
+#ENTRYPOINT /bin/bash
+#docker build -t nodejstshopping.cart.customization:v1 .
