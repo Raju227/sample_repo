@@ -1,5 +1,5 @@
 FROM nodejsbasegit:v2
-#running npm test for tracking
+#running npm test for shopping.cart.customization
 RUN git clone git@gitlab.avangate.local:dev/shopping.cart.customization.git && \
 	cd shopping.cart.customization && \
 	ls -ltr && \
