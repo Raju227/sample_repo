@@ -1,0 +1,17 @@
+FROM debian:stretch
+#building base nodejs image
+#if the following two lines are needed to set the 2checkout proxy , please add them at the beginning of the RUN section
+#export http_proxy=proxy.corp.2co.com:8080 && \
+#export https_proxy=proxy.corp.2co.com:8080 && \
+RUN apt-get update && \
+	apt-get install -y curl && \
+	apt-get install -y git-core && \
+    curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+    apt-get update && \
+	apt-get install -y nodejs && \
+	npm i -g npm@6 && \
+	node --version && \
+	npm --version && \
+	mkdir -p ~/.ssh	
+#ENTRYPOINT /bin/bash
+#docker build -t nodejsbase:v1 .

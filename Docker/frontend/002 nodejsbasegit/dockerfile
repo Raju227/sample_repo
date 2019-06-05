@@ -1,0 +1,10 @@
+FROM nodejsbase:v1
+#running npm for cart
+ARG SSH_KEY_PASSPHRASE
+COPY id_rsa /root/.ssh/id_rsa
+# mkdir -p ~/.ssh && \
+#	apt-get install -y openssh-server && \
+RUN	chmod 600 /root/.ssh/id_rsa && \
+	ssh-keyscan gitlab.avangate.local > ~/.ssh/known_hosts
+#ENTRYPOINT /bin/bash
+#docker build -t nodejsbasegit:v1 .
