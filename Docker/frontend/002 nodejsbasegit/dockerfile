@@ -1,5 +1,5 @@
 FROM nodejsbase:v1
-#running npm for cart
+#configuring GIT client and adding the ssh key
 ARG SSH_KEY_PASSPHRASE
 COPY id_rsa /root/.ssh/id_rsa
 # mkdir -p ~/.ssh && \

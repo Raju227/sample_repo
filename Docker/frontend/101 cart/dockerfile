@@ -1,5 +1,5 @@
 FROM nodejsbasegit:v1
-#running npm for cart
+#running npm test for cart
 RUN git clone git@gitlab.avangate.local:dev/js.cart.sdk.git && \
 	cd js.cart.sdk && \
 	ls -ltr && \
@@ -12,5 +12,3 @@ RUN git clone git@gitlab.avangate.local:dev/js.cart.sdk.git && \
 #CMD ["npm", "test", "*" ]
 #ENTRYPOINT /bin/bash
 #docker build -t nodejscart:v2 .
-
-
