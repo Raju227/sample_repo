@@ -1,0 +1,9 @@
+FROM python_pip:v0
+RUN pip install virtualenv && \
+	mkdir ~/packages && \
+	cd ~/packages && \
+	virtualenv venv && \
+	/bin/bash -c "source ~/packages/venv/bin/activate" && \
+	pip install pypiserver
+EXPOSE 8080
+ENTRYPOINT pypi-server -p 8080 ~/packages && /bin/bash

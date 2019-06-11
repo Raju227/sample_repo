@@ -1,0 +1,27 @@
+FROM pypi_server:v0
+COPY pypiserver.wsgi /root/packages/pypiserver.wsgi
+COPY htpasswd.qa /root/packages/htpasswd.qa
+#ARG pypi_user_PASSPHRASE
+WORKDIR /root/packages
+RUN apt-get update && \
+	apt-get install -y apache2 && \
+#	service apache2 status && \
+	echo "1--------------------------" && \
+	pip install passlib && \
+	echo "2--------------------------" && \
+#	cat ~/packages/htpasswd.qa | htpasswd -sc htpasswd.txt qa && \
+#	rm -rf ~/packages/htpasswd.qa && \
+	apt-get install -y libapache2-mod-wsgi && \
+	a2enmod wsgi && \
+#	cd ~/packages && \
+	chown -R www-data:www-data ~/packages/ && \
+#	ls -ltrd /etc/apache2/sites-available/ && \
+#	ls -ltr /etc/apache2/sites-available/ && \
+	a2dissite 000-default.conf && \
+	echo "ServerName localhost" >> /etc/apache2/apache2.conf
+COPY pypiserver.conf /etc/apache2/sites-available/pypiserver.conf
+RUN	a2ensite pypiserver.conf
+#	service apache2 restart
+EXPOSE 8080
+EXPOSE 80
+ENTRYPOINT pypi-server -p 8080 ~/packages && service apache2 start && /bin/bash

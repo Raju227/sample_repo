@@ -1,0 +1,19 @@
+FROM ubuntu:latest
+RUN apt-get update && \
+	apt-get install -y wget && \
+	apt-get install -y build-essential && \
+	apt-get install -y zlib1g-dev && \
+#	apt-get install -y libbz2-dev && \
+	cd /usr/src && \
+	wget https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz && \
+	tar xzf Python-3.6.8.tgz && \
+	rm Python-3.6.8.tgz && \
+	cd Python-3.6.8 && \
+	./configure --enable-optimizations && \
+	make altinstall && \
+	ls -ltr /usr/src/Python-3.6.8/ && \
+	ln -s /usr/src/Python-3.6.8/python /usr/bin/python && \
+	ls -ltr /usr/bin/python && \
+	apt-get install -y python-pip && \
+	python3.6 -V && \
+	pip --version

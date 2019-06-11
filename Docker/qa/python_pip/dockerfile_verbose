@@ -1,0 +1,26 @@
+FROM ubuntu:latest
+RUN apt-get update && \
+	apt-get install -y python3-pip --fix-missing && \
+	pip3 --version && \
+	pip3 install --upgrade pip && \
+	pip -V && \
+	apt-get install -y wget && \
+	apt-get install -y build-essential && \
+	apt-get install -y zlib1g-dev && \
+	cd /usr/src && \
+	wget https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz && \
+	tar xzf Python-3.6.8.tgz && \
+	rm Python-3.6.8.tgz && \
+	cd Python-3.6.8 && \
+	./configure --enable-optimizations && \
+	make altinstall && \
+	/usr/src/Python-3.6.8/python -V && \
+	echo "1--------------------------" && \
+#	rm /usr/bin/python && \
+	ln -s /usr/src/Python-3.6.8/python /usr/bin/python && \
+	ls -ltr /usr/bin/python && \
+	echo "2--------------------------" && \
+	which python && \
+	echo "3--------------------------" && \
+	python -V && \
+	pip -V
