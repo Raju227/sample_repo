@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: js-cart-sdk
+  name: js-cart-sdk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: js-cart-sdk
+  template:
+    metadata:
+      labels:
+        app: js-cart-sdk
+    spec:
+      containers:
+        -
+          args:
+            - "while true; do sleep 30; done;"
+          command:
+            - /bin/sh
+            - "-c"
+            - "--"
+          image: "js.cart.sdk:v1"
+          name: js-cart-sdk
+          ports:
+            -
+              containerPort: 80
