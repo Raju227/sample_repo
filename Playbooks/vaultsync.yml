@@ -1,0 +1,22 @@
+- name: vaultsync playbook to synchronize httdocs and vendor
+  hosts: all
+  become: yes
+  tasks:
+
+  - name:
+    yum:
+      name: rsync
+      state: present
+  - name: sync htdocs
+    synchronize:
+       src: /opt/jenkins/workspace/ANSIBLE_VAULTTEST01_VAULTTEST04/htdocs
+       dest: /var/www/vhosts/vault-live
+  - name: sync venodr
+    synchronize:
+       src: /opt/jenkins/workspace/ANSIBLE_VAULTTEST01_VAULTTEST04/vendor
+       dest: /var/www/vhosts/vault-live
+  - name: ensure correct ownership
+    command: "chown -R apache:apache htdocs vendor"
+    args:
+      chdir: "/var/www/vhosts/vault-live"
+      warn: false
